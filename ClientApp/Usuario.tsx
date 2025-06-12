@@ -30,6 +30,26 @@ const Usuario = () => {
     const Buscar = () => {
         listarRegistro();
     }
+
+    const eliminar = async(item: Usuario) => {
+        if(!confirm("¿Desea eliminar el usuario" + item.Nombre + "?")){
+            return;
+        }
+
+        const resp = await fetch("/api/usuarios/" + item.Id, {
+            method: "DELETE"
+        });
+
+        if (resp.ok) {
+            listarRegistro();
+        }
+        else{
+            const error = await resp.text();
+            console.log(error);
+            alert("Ocurrio un error al eliminar el registro");
+        }
+    }
+
     return(
         <>
         <div className="container">
@@ -90,7 +110,7 @@ const Usuario = () => {
                                         <td>{item.Password}</td>
                                         <td className="d-flex gap-2">
                                             <a className="btn btn-primary" href={"/usuarios/" + item.Id}>Editar</a>
-                                            <button className="btn btn-danger">Eliminar</button>
+                                            <button className="btn btn-danger" onClick={() => eliminar(item)}>Eliminar</button>
                                         </td>
                                     </tr>)
                                 }
