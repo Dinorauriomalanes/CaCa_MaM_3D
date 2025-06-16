@@ -32,7 +32,7 @@ const Usuario = () => {
     }
 
     const eliminar = async(item: Usuario) => {
-        if(!confirm("¿Desea eliminar el usuario" + item.Nombre + "?")){
+        if(!confirm("¿Desea eliminar el usuario " + item.Nombre + "?")){
             return;
         }
 
