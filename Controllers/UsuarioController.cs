@@ -1,8 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 
-public class UsuarioController : Controller{
+[Route("usuarios")]
+public class UsuarioController : Controller
+{
 
-    public IActionResult Index(){
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [Route("editar/{id?}")]
+    public IActionResult Editar(string? id)
+    {
+        ViewBag.ID = id;
         return View();
     }
 }
